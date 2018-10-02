@@ -71,10 +71,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
             case R.id.fButton:
                 showToast();
                 break;
-            case R.id.hisButton:
-                openHistoryActivity(View v);
-            case R.id.savButton:
-                save(View v);
+//            case R.id.hisButton:
+//                openHistoryActivity(View v);
+//            case R.id.savButton:
+//                save(View v);
         }
     }
 
