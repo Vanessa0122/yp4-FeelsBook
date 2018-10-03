@@ -3,7 +3,8 @@ package p.vanessa.yp4_feelsbook;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class HistoryActivity extends AppCompatActivity {
+
+public class HistoryPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -11,4 +12,10 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
     }
 
+
+
 }
+
+
+
+

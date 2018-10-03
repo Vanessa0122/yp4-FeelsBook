@@ -101,37 +101,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fButton" />
 
-    <EditText
-        android:id="@+id/comment"
-        android:layout_width="match_parent"
-        android:layout_height="116dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
-        android:ems="10"
-        android:inputType="text|textPersonName"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="@android:color/background_light"
-        android:textSize="18sp" />
-
-    <Button
-        android:id="@+id/savButton"
-        style="@android:style/Widget.Holo.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="14dp"
-        android:text="save"
-        android:textColor="@android:color/background_light" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="175dp"
-        android:layout_height="36dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/comment"
-        android:text="Enter Additional Comment: "
-        android:textColor="@android:color/background_light" />
-
 </RelativeLayout>
