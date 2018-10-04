@@ -34,14 +34,17 @@ public abstract class Emotion {
 
     // Functions that gets the information
     public Date getDate(){
+
         return this.date;
     }
 
     public String getComment(){
+
         return this.comment;
     }
 
     public String getEmotionType(){
+
         return emotionType;
     }
 
