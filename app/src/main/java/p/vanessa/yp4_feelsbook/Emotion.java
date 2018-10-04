@@ -48,6 +48,15 @@ public abstract class Emotion {
         return emotionType;
     }
 
+    @Override
+    public String toString(){
+        return this.emotionType+this.comment+this.date;
+    }
+
+
+
+
+
     // change to format of date so we can save it
     public String formatDateToISO(){
         TimeZone timezone = TimeZone.getTimeZone("MST");

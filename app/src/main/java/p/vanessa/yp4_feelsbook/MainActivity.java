@@ -35,23 +35,23 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener{
 
-    private static final String FILENAME = "file.sav";
     static ArrayList<Emotion> emotionList = new ArrayList<>();
-    EmotionTasks emoTasks;
-    ListView instantDisplay = findViewById(R.id.displayInstantly);
-    Button loveButton = findViewById(R.id.lButton);
-    Button joyButton = findViewById(R.id.jButton);
-    Button surpriseButton = findViewById(R.id.spsButton);
-    Button angerButton = findViewById(R.id.aButton);
-    Button sadnessButton = findViewById(R.id.sadButton);
-    Button fearButton = findViewById(R.id.fButton);
-    Button historyButton = findViewById(R.id.hisButton);
-    EditText comment = findViewById(R.id.comment);
+    ArrayAdapter emotionAdaptor;
+
     // This function is for declaring and initializing the data
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ListView instantDisplay = findViewById(R.id.displayInstantly);
+        Button loveButton = findViewById(R.id.lButton);
+        Button joyButton = findViewById(R.id.jButton);
+        Button surpriseButton = findViewById(R.id.spsButton);
+        Button angerButton = findViewById(R.id.aButton);
+        Button sadnessButton = findViewById(R.id.sadButton);
+        Button fearButton = findViewById(R.id.fButton);
+        Button historyButton = findViewById(R.id.hisButton);
 
 
         loveButton.setOnClickListener(this);
@@ -61,60 +61,79 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         sadnessButton.setOnClickListener(this);
         fearButton.setOnClickListener(this);
         historyButton.setOnClickListener(this);
+        Emotion_Joy joy = new Emotion_Joy(new Date());
+
+        emotionList.add(joy);
+
+        emotionAdaptor = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, emotionList);
+        //emoTasks = new EmotionTasks(getApplicationContext(), emotionList);
+        instantDisplay.setAdapter(emotionAdaptor);
+
         instantDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int spot, long l) {
-                Intent editStuff = new Intent(getApplicationContext(), Edit_Previous_Emotion.class);
-                editStuff.putExtra("emotionIndex", spot);
+                Intent editStuff = new Intent(getApplicationContext(), Edit.class);
+                editStuff.putExtra("emotionType", spot);
                 startActivity(editStuff);
             }
         });
 
     }
 
+
     @Override
     protected void onStart(){
         super.onStart();
         load();
-        emoTasks = new EmotionTasks(getApplicationContext(), emotionList);
-        instantDisplay.setAdapter(emoTasks);
     }
 
     // Check which button was clicked
         @Override
         public void onClick(View view) {
+            EditText comment = findViewById(R.id.comment);
             switch(view.getId()){
                 case R.id.lButton:
                     Emotion_Love love = new Emotion_Love(new Date());
                     emotionList.add(love);
-                    emoTasks.change();
-                    love.setComment(comment.getText().toString());
+                    love.saveComment(comment.getText().toString());
+                    //Refreshes the listview
+                    emotionAdaptor.notifyDataSetChanged();
                     emoCalled();
                     save();
                     break;
                 case R.id.jButton:
                     Emotion_Joy joy = new Emotion_Joy(new Date());
                     emotionList.add(joy);
+                    joy.saveComment(comment.getText().toString());
+                    emoCalled();
                     save();
                     break;
                 case R.id.spsButton:
                     Emotion_Surprise surprise = new Emotion_Surprise(new Date());
+                    surprise.saveComment(comment.getText().toString());
+                    emoCalled();
                     emotionList.add(surprise);
                     save();
                     break;
                 case R.id.aButton:
                     Emotion_Anger anger = new Emotion_Anger(new Date());
+                    anger.saveComment(comment.getText().toString());
                     emotionList.add(anger);
                     save();
+                    emoCalled();
                     break;
                 case R.id.sadButton:
                     Emotion_Sadness sadness = new Emotion_Sadness(new Date());
                     emotionList.add(sadness);
+                    sadness.saveComment(comment.getText().toString());
+                    emoCalled();
                     save();
                     break;
                 case R.id.fButton:
                     Emotion_Fear fear = new Emotion_Fear(new Date());
                     emotionList.add(fear);
+                    fear.saveComment(comment.getText().toString());
+                    emoCalled();
                     save();
                     break;
                 case R.id.hisButton:
@@ -132,46 +151,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
 
 
     private void load() {
-        try {
-            FileInputStream fis = openFileInput(FILENAME);
-            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
 
-            Gson gson = new Gson();
-
-            //Taken from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
-            // 2017-01-24 18:19
-            Type listType = new TypeToken<ArrayList<Emotion_Joy>>(){}.getType();
-            emotionList = gson.fromJson(in, listType);
-
-            } catch (FileNotFoundException e) {
-                emotionList = new ArrayList<Emotion>();
-            } catch (IOException e) {
-                throw new RuntimeException();
-            }
-        }
+    }
 
     private void emoCalled(){
-        save();
-        if (instantDisplay.getText().toString().trim().length() == 0) {
-            moveToDetails();
-        }
-        else {
-            //sort
-            emoTasks.change();
-            instantDisplay.getText().clear();
-        }
+//        save();
+//        if (instantDisplay.getText().toString().trim().length() == 0) {
+//            moveToDetails();
+//        }
+//        else {
+//            //sort
+//            instantDisplay.getText().clear();
+//        }
     }
-
-    // Method to move to the specific view of each emotion
-    // Allows the user to modify new emotions
-    // IMPORTANT: This method should only called for the most-recently added item
-    private void moveToDetails(){
-        int index = emotionList.size()-1;
-        Intent intent = new Intent(getApplicationContext(), Edit_Previous_Emotion.class);
-        intent.putExtra("emotionOrder", index);
-        startActivity(intent);
-    }
-
 
 
     public void save(){

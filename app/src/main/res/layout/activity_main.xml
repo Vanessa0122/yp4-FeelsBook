@@ -120,6 +120,7 @@
         android:layout_height="109dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/hisButton"
+        android:background="@android:color/background_light"
         android:text="TextView" />
 
 </RelativeLayout>
