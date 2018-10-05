@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,6 +29,9 @@
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="164dp"
         android:text="Love"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,6 +43,7 @@
         android:layout_height="60dp"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="164dp"
         android:text="Joy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -53,9 +57,10 @@
         android:layout_height="60dp"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/lButton"
+        android:layout_marginTop="164dp"
         android:text="Surprise"
-        app:layout_constraintBaseline_toBaselineOf="@+id/jButton"
-        app:layout_constraintStart_toEndOf="@+id/jButton" />
+        app:layout_constraintStart_toEndOf="@+id/jButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/aButton"
@@ -64,6 +69,9 @@
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/lButton"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="224dp"
         android:text="Anger"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -75,6 +83,7 @@
         android:layout_height="60dp"
         android:layout_alignTop="@+id/aButton"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="224dp"
         android:text="Sadness"
         app:layout_constraintStart_toEndOf="@+id/aButton"
         app:layout_constraintTop_toTopOf="parent" />
@@ -86,6 +95,7 @@
         android:layout_height="60dp"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/aButton"
+        android:layout_marginTop="224dp"
         android:text="Fear"
         app:layout_constraintStart_toEndOf="@+id/sadButton"
         app:layout_constraintTop_toTopOf="parent" />
@@ -93,34 +103,47 @@
     <Button
         android:id="@+id/hisButton"
         style="@android:style/Widget.Holo.Button"
-        android:layout_width="281dp"
+        android:layout_width="196dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/aButton"
         android:layout_centerHorizontal="true"
-        android:text="View History/ Check Count"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Check Count"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fButton" />
 
     <EditText
         android:id="@+id/comment"
         style="@android:style/Widget.Holo.Light.EditText"
         android:layout_width="match_parent"
-        android:layout_height="106dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/hisButton"
         android:ems="10"
-        android:hint="Enter Comment:"
+        android:hint="Enter your comment here: "
         android:inputType="text"
-        android:text="Comment: "
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorAccent"
+        android:textColorHint="#ffff"
+        app:layout_constraintBottom_toTopOf="@+id/displayInstantly"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ListView
         android:id="@+id/displayInstantly"
-        android:layout_width="match_parent"
-        android:layout_height="109dp"
+        android:layout_width="410dp"
+        android:layout_height="132dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/hisButton"
         android:background="@android:color/background_light"
-        android:text="TextView" />
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+/>
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

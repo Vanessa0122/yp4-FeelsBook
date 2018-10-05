@@ -1,6 +1,7 @@
 package p.vanessa.yp4_feelsbook;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -61,13 +62,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         sadnessButton.setOnClickListener(this);
         fearButton.setOnClickListener(this);
         historyButton.setOnClickListener(this);
-        Emotion_Joy joy = new Emotion_Joy(new Date());
-
-        emotionList.add(joy);
 
         emotionAdaptor = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, emotionList);
         //emoTasks = new EmotionTasks(getApplicationContext(), emotionList);
         instantDisplay.setAdapter(emotionAdaptor);
+        instantDisplay.setBackgroundColor(Color.CYAN);
+
 
         instantDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -94,46 +94,44 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
             switch(view.getId()){
                 case R.id.lButton:
                     Emotion_Love love = new Emotion_Love(new Date());
-                    emotionList.add(love);
                     love.saveComment(comment.getText().toString());
-                    //Refreshes the listview
+                    emotionList.add(love);
                     emotionAdaptor.notifyDataSetChanged();
-                    emoCalled();
                     save();
                     break;
                 case R.id.jButton:
                     Emotion_Joy joy = new Emotion_Joy(new Date());
-                    emotionList.add(joy);
                     joy.saveComment(comment.getText().toString());
-                    emoCalled();
+                    emotionList.add(joy);
+                    emotionAdaptor.notifyDataSetChanged();
                     save();
                     break;
                 case R.id.spsButton:
                     Emotion_Surprise surprise = new Emotion_Surprise(new Date());
                     surprise.saveComment(comment.getText().toString());
-                    emoCalled();
                     emotionList.add(surprise);
+                    emotionAdaptor.notifyDataSetChanged();
                     save();
                     break;
                 case R.id.aButton:
                     Emotion_Anger anger = new Emotion_Anger(new Date());
                     anger.saveComment(comment.getText().toString());
                     emotionList.add(anger);
+                    emotionAdaptor.notifyDataSetChanged();
                     save();
-                    emoCalled();
                     break;
                 case R.id.sadButton:
                     Emotion_Sadness sadness = new Emotion_Sadness(new Date());
-                    emotionList.add(sadness);
                     sadness.saveComment(comment.getText().toString());
-                    emoCalled();
+                    emotionList.add(sadness);
+                    emotionAdaptor.notifyDataSetChanged();
                     save();
                     break;
                 case R.id.fButton:
                     Emotion_Fear fear = new Emotion_Fear(new Date());
-                    emotionList.add(fear);
                     fear.saveComment(comment.getText().toString());
-                    emoCalled();
+                    emotionList.add(fear);
+                    emotionAdaptor.notifyDataSetChanged();
                     save();
                     break;
                 case R.id.hisButton:
@@ -150,28 +148,20 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     }
 
 
+    //CODE SOURCE: https://www.youtube.com/watch?v=jcliHGR3CHo
     private void load() {
 
     }
 
-    private void emoCalled(){
-//        save();
-//        if (instantDisplay.getText().toString().trim().length() == 0) {
-//            moveToDetails();
-//        }
-//        else {
-//            //sort
-//            instantDisplay.getText().clear();
-//        }
-    }
 
 
+    // CODE SOURCE: https://www.youtube.com/watch?v=jcliHGR3CHo
     public void save(){
         SharedPreferences sharedPreferences = getSharedPreferences("FILENAME", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(MainActivity.emotionList);
-        editor.putString("Emotion list", json);
+        editor.putString("emotionlist", json);
         editor.apply();
     }
 }

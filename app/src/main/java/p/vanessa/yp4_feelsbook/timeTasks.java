@@ -8,14 +8,14 @@ import java.util.Date;
 public class timeTasks {
 
     public String format(Date date){
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         return df.format(date);
     }
 
     // Converts the Iso back into a Date Time
     public Date recordTime(String isoTime){
         try {
-            DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
             Date finalResult = df1.parse(isoTime);
             return finalResult;
         } catch (Exception ex){

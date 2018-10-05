@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark">
 
     <TextView
         android:id="@+id/viewDate"
@@ -13,7 +14,7 @@
         android:layout_marginLeft="132dp"
         android:layout_marginStart="132dp"
         android:layout_marginTop="16dp"
-        android:text="Date"
+        android:text="     Date"
         android:textColor="@color/colorPrimary"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,53 +28,60 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@android:color/holo_blue_light"
+        android:hint="Edit your date here: "
+        android:textColorHint="#ffff"/>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/viewEmotion"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginLeft="132dp"
         android:layout_marginStart="132dp"
         android:layout_marginTop="124dp"
-        android:text="Emotion"
+        android:text="  Emotion"
         android:textColor="@color/colorPrimary"
         android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editEmotion"
-        android:layout_width="384dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="164dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/displayEmotion"
+        android:layout_width="384dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="164dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@android:color/holo_blue_light" />
+
+    <TextView
+        android:id="@+id/viewComment"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginLeft="132dp"
         android:layout_marginStart="132dp"
-        android:layout_marginTop="228dp"
-        android:text="Comment"
+        android:layout_marginTop="232dp"
+        android:text=" Comment"
         android:textColor="@color/colorPrimary"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColorHint="#ffff"/>
 
     <EditText
         android:id="@+id/editComment"
         android:layout_width="384dp"
         android:layout_height="59dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="284dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@android:color/holo_blue_light"
+        android:hint="Edit your comment here: "
+        android:textColorHint="#ffff"/>
 
     <Button
         android:id="@+id/savebutton"

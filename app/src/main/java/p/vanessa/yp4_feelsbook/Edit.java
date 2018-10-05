@@ -13,17 +13,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class Edit extends AppCompatActivity {
 
     int emotionType;
-    static timeTasks timeTasks = new timeTasks();
     Button saveButton;
     Button deleteButton;
+    TextView viewEmotion;
     EditText editDate;
-    EditText  editEmotion;
     EditText editComment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +33,15 @@ public class Edit extends AppCompatActivity {
         Intent intent = getIntent();
 
         //Find the ID for the text boxes
+        viewEmotion = findViewById(R.id.displayEmotion);
         editDate = findViewById(R.id.editDate);
         editComment = findViewById(R.id.editComment);
-        editEmotion = findViewById(R.id.editEmotion);
         saveButton = findViewById(R.id.savebutton);
         emotionType = intent.getIntExtra("emotionType", -99);
 
-        editDate.setText(timeTasks.format(
-                MainActivity.emotionList.get(emotionType).getDate()));
+        editDate.setText(format(MainActivity.emotionList.get(emotionType).getDate()));
         editComment.setText(MainActivity.emotionList.get(emotionType).getComment());
-        editEmotion.setText(MainActivity.emotionList.get(emotionType).toString());
+        viewEmotion.setText(MainActivity.emotionList.get(emotionType).toString());
 
         // When the save Button is pressed
         // Will save all the changes
@@ -62,14 +61,13 @@ public class Edit extends AppCompatActivity {
             }
         });
     }
+
+
+    public String format(Date date){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(date);
+    }
 }
 
-//        public void save(){
-//            SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-//            SharedPreferences.Editor editor = sharedPreferences.edit();
-//            Gson gson = new Gson();
-//            String json = gson.toJson(MainActivity.emotionList);
-//            editor.putString("save", json);
-//            editor.apply();
-//        }
+
 

@@ -13,6 +13,6 @@ public class Emotion_Anger extends Emotion{
 
     @Override
     public String toString() {
-        return this.emotionType + " | " + this.getDate().toString();
+        return "You felt " + this.emotionType + " on " + this.getDate().toString();
     }
 }
