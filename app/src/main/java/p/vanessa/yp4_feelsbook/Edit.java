@@ -37,29 +37,30 @@ public class Edit extends AppCompatActivity {
         editDate = findViewById(R.id.editDate);
         editComment = findViewById(R.id.editComment);
         saveButton = findViewById(R.id.savebutton);
-        emotionType = intent.getIntExtra("emotionType", -99);
 
+        emotionType = intent.getIntExtra("emotionType", -99);
         editDate.setText(format(MainActivity.emotionList.get(emotionType).getDate()));
         editComment.setText(MainActivity.emotionList.get(emotionType).getComment());
         viewEmotion.setText(MainActivity.emotionList.get(emotionType).toString());
 
+
         // When the save Button is pressed
         // Will save all the changes
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String comment = editComment.getText().toString();
-
-                if (emotionType != -1) {
-                    // If the object is an existing one
-                    // Simply update the time and the comment
-                    // DO NOT let the user change the actual emotion
-                    Emotion emotionList = MainActivity.emotionList.get(emotionType);
-                    emotionList.saveComment(comment);
-
-                }
-            }
-        });
+//        saveButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String comment = editComment.getText().toString();
+//
+//                if (emotionType != -1) {
+//                    // If the object is an existing one
+//                    // Simply update the time and the comment
+//                    // DO NOT let the user change the actual emotion
+//                    Emotion emotionList = MainActivity.emotionList.get(emotionType);
+//                    emotionList.saveComment(comment);
+//
+//                }
+//            }
+//        });
     }
 
 

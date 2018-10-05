@@ -35,11 +35,6 @@ public abstract class Emotion {
         return this.comment;
     }
 
-    public String getEmotionType(){
-
-        return emotionType;
-    }
-
     @Override
     public String toString(){
         return this.emotionType+this.comment+this.date;

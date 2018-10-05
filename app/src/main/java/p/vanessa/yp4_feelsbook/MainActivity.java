@@ -1,4 +1,5 @@
 package p.vanessa.yp4_feelsbook;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -25,6 +26,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
@@ -35,7 +37,7 @@ import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity implements OnClickListener{
-
+    private static final String FILENAME = "file.sav";
     static ArrayList<Emotion> emotionList = new ArrayList<>();
     ArrayAdapter emotionAdaptor;
 
@@ -97,42 +99,42 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
                     love.saveComment(comment.getText().toString());
                     emotionList.add(love);
                     emotionAdaptor.notifyDataSetChanged();
-                    save();
+                    //save();
                     break;
                 case R.id.jButton:
                     Emotion_Joy joy = new Emotion_Joy(new Date());
                     joy.saveComment(comment.getText().toString());
                     emotionList.add(joy);
                     emotionAdaptor.notifyDataSetChanged();
-                    save();
+                    //save();
                     break;
                 case R.id.spsButton:
                     Emotion_Surprise surprise = new Emotion_Surprise(new Date());
                     surprise.saveComment(comment.getText().toString());
                     emotionList.add(surprise);
                     emotionAdaptor.notifyDataSetChanged();
-                    save();
+                    //save();
                     break;
                 case R.id.aButton:
                     Emotion_Anger anger = new Emotion_Anger(new Date());
                     anger.saveComment(comment.getText().toString());
                     emotionList.add(anger);
                     emotionAdaptor.notifyDataSetChanged();
-                    save();
+                    //save();
                     break;
                 case R.id.sadButton:
                     Emotion_Sadness sadness = new Emotion_Sadness(new Date());
                     sadness.saveComment(comment.getText().toString());
                     emotionList.add(sadness);
                     emotionAdaptor.notifyDataSetChanged();
-                    save();
+                    //save();
                     break;
                 case R.id.fButton:
                     Emotion_Fear fear = new Emotion_Fear(new Date());
                     fear.saveComment(comment.getText().toString());
                     emotionList.add(fear);
                     emotionAdaptor.notifyDataSetChanged();
-                    save();
+                    save(comment.getText().toString(), fear.getDate());
                     break;
                 case R.id.hisButton:
                     openHistoryActivity();
@@ -148,21 +150,40 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     }
 
 
-    //CODE SOURCE: https://www.youtube.com/watch?v=jcliHGR3CHo
-    private void load() {
+    private String[] load() {
+        ArrayList<String> tweets = new ArrayList<String>();
+        try {
+            FileInputStream fis = openFileInput(FILENAME);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            String line = in.readLine();
+            while (line != null) {
+                tweets.add(line);
+                line = in.readLine();
+            }
 
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return tweets.toArray(new String[tweets.size()]);
     }
 
-
-
-    // CODE SOURCE: https://www.youtube.com/watch?v=jcliHGR3CHo
-    public void save(){
-        SharedPreferences sharedPreferences = getSharedPreferences("FILENAME", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(MainActivity.emotionList);
-        editor.putString("emotionlist", json);
-        editor.apply();
+    private void save(String text, Date date) {
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_APPEND);
+            fos.write(new String(date.toString() + " | " + text)
+                    .getBytes());
+            fos.close();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
 
