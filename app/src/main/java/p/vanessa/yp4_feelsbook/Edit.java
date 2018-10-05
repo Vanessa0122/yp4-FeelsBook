@@ -53,9 +53,6 @@ public class Edit extends AppCompatActivity {
                 String comment = editComment.getText().toString();
 
                 if (emotionType != -1) {
-                    // If the object is an existing one
-                    // Simply update the time and the comment
-                    // DO NOT let the user change the actual emotion
                     Emotion emotionList = MainActivity.emotionList.get(emotionType);
                     emotionList.saveComment(comment);
 
@@ -66,12 +63,8 @@ public class Edit extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String comment = editComment.getText().toString();
 
                 if (emotionType != -1) {
-                    // If the object is an existing one
-                    // Simply update the time and the comment
-                    // DO NOT let the user change the actual emotion
                     MainActivity.emotionList.remove(emotionType);
 
                 }

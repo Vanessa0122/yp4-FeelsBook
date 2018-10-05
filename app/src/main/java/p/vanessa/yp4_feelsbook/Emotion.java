@@ -1,23 +1,12 @@
 package p.vanessa.yp4_feelsbook;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class Emotion {
 
     private transient String emotionType = "None";
-    private ArrayList<Emotion> emotionArray = MainActivity.emotionList;
     private String comment;
     private Date date;
-
-
-    public void addEmotion(Emotion emotionType){
-        this.emotionArray.add(emotionType);
-    }
-
-    public void removeEmotion(Emotion emotionType){
-        this.emotionArray.remove(emotionType);
-    }
 
     Emotion(Date date){
 
@@ -33,8 +22,6 @@ public abstract class Emotion {
     }
 
 
-
-
     // Functions that gets the information
     public Date getDate(){
 
@@ -44,18 +31,6 @@ public abstract class Emotion {
     public String getComment(){
 
         return this.comment;
-    }
-
-
-    public int getCount(Emotion emotionType){
-        int counter = 0;
-        for (int i = 0; i < this.emotionArray.size(); i ++) {
-            if (this.emotionArray.get(i).equals(emotionType)) {
-                counter++;
-            }
-        }
-        return counter;
-
     }
 
 
