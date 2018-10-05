@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@android:color/background_dark">
+    android:background="@android:color/background_dark"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -13,12 +13,13 @@
         android:layout_height="56dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="16dp"
         android:text="Hello, how are you feeling? "
         android:textColor="@android:color/holo_blue_light"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.258"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,10 +29,11 @@
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="104dp"
         android:text="Love"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +45,7 @@
         android:layout_height="60dp"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="104dp"
         android:text="Joy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -56,8 +58,9 @@
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/lButton"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="104dp"
         android:text="Surprise"
         app:layout_constraintStart_toEndOf="@+id/jButton"
         app:layout_constraintTop_toTopOf="parent" />
@@ -68,10 +71,11 @@
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/lButton"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="192dp"
         android:text="Anger"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -83,7 +87,7 @@
         android:layout_height="60dp"
         android:layout_alignTop="@+id/aButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="192dp"
         android:text="Sadness"
         app:layout_constraintStart_toEndOf="@+id/aButton"
         app:layout_constraintTop_toTopOf="parent" />
@@ -95,26 +99,10 @@
         android:layout_height="60dp"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/aButton"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="192dp"
         android:text="Fear"
         app:layout_constraintStart_toEndOf="@+id/sadButton"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/hisButton"
-        style="@android:style/Widget.Holo.Button"
-        android:layout_width="196dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/aButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Check Count"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fButton" />
 
     <EditText
         android:id="@+id/comment"
@@ -122,7 +110,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/hisButton"
         android:ems="10"
         android:hint="Enter your comment here: "
         android:inputType="text"
@@ -134,16 +121,92 @@
 
     <ListView
         android:id="@+id/displayInstantly"
-        android:layout_width="410dp"
-        android:layout_height="132dp"
+        android:layout_width="406dp"
+        android:layout_height="266dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_marginTop="400dp"
         android:background="@android:color/background_light"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lcount"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="164dp"
+        android:text="love "
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/jcount"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="164dp"
+        android:text="Joy"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toEndOf="@+id/lcount"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/spscount"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="164dp"
+        android:text="Surprise"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toEndOf="@+id/jcount"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/acount"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="252dp"
+        android:text="Anger"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/scount"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="252dp"
+        android:text="Sadness"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toEndOf="@+id/acount"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fcount"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="252dp"
+        android:text="Fear"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toEndOf="@+id/scount"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
+
+
+
+
+
+
+
+
+

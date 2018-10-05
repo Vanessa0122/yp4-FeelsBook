@@ -37,6 +37,7 @@ public class Edit extends AppCompatActivity {
         editDate = findViewById(R.id.editDate);
         editComment = findViewById(R.id.editComment);
         saveButton = findViewById(R.id.savebutton);
+        deleteButton = findViewById(R.id.delbutton);
 
         emotionType = intent.getIntExtra("emotionType", -99);
         editDate.setText(format(MainActivity.emotionList.get(emotionType).getDate()));
@@ -44,25 +45,39 @@ public class Edit extends AppCompatActivity {
         viewEmotion.setText(MainActivity.emotionList.get(emotionType).toString());
 
 
-        // When the save Button is pressed
-        // Will save all the changes
-//        saveButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String comment = editComment.getText().toString();
-//
-//                if (emotionType != -1) {
-//                    // If the object is an existing one
-//                    // Simply update the time and the comment
-//                    // DO NOT let the user change the actual emotion
-//                    Emotion emotionList = MainActivity.emotionList.get(emotionType);
-//                    emotionList.saveComment(comment);
-//
-//                }
-//            }
-//        });
-    }
+//         When the save Button is pressed
+//         Will save all the changes
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String comment = editComment.getText().toString();
 
+                if (emotionType != -1) {
+                    // If the object is an existing one
+                    // Simply update the time and the comment
+                    // DO NOT let the user change the actual emotion
+                    Emotion emotionList = MainActivity.emotionList.get(emotionType);
+                    emotionList.saveComment(comment);
+
+                }
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String comment = editComment.getText().toString();
+
+                if (emotionType != -1) {
+                    // If the object is an existing one
+                    // Simply update the time and the comment
+                    // DO NOT let the user change the actual emotion
+                    MainActivity.emotionList.remove(emotionType);
+
+                }
+            }
+        });
+    }
 
     public String format(Date date){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

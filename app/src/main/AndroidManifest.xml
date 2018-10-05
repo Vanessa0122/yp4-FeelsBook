@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".HistoryPage" />
-        <activity android:name=".Edit"></activity>
+        <activity android:name=".Edit" />
     </application>
 
 </manifest>

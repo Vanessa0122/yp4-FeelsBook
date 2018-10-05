@@ -16,6 +16,6 @@ public class Emotion_Surprise extends Emotion{
 
     @Override
     public String toString() {
-        return "You felt " + this.emotionType + " on " + this.getDate().toString();
+        return this.emotionType + " " + this.getDate().toString();
     }
 }
