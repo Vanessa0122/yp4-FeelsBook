@@ -20,6 +20,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +29,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -37,8 +39,34 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     //private static final String FILENAME = "file.sav";
     //List of Emotions entered
+
+    private Integer count_sad = 0;
+    private Integer count_joy = 0;
+    private Integer count_fear = 0;
+    private Integer count_anger = 0;
+    private Integer count_surprise = 0;
+    private Integer count_love = 0;
+
+    private TextView loveView;
+    private TextView joyView;
+    private TextView surpriseView;
+    private TextView angerView;
+    private TextView sadnessView;
+    private TextView fearView;
+
+    private Button loveButton;
+    private Button joyButton;
+    private Button surpriseButton;
+    private Button angerButton;
+    private Button sadnessButton;
+    private Button fearButton;
+
+    static Integer index;
+
+
+
     static ArrayList<Emotion> emotionList = new ArrayList<>();
-    ArrayAdapter emotionAdaptor;
+    static ArrayAdapter emotionAdaptor;
 
     // This function is for declaring and initializing the data
     @Override
@@ -47,12 +75,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         ListView instantDisplay = findViewById(R.id.displayInstantly);
-        Button loveButton = findViewById(R.id.lButton);
-        Button joyButton = findViewById(R.id.jButton);
-        Button surpriseButton = findViewById(R.id.spsButton);
-        Button angerButton = findViewById(R.id.aButton);
-        Button sadnessButton = findViewById(R.id.sadButton);
-        Button fearButton = findViewById(R.id.fButton);
+        loveButton = findViewById(R.id.lButton);
+        joyButton = findViewById(R.id.jButton);
+        sadnessButton = findViewById(R.id.sadButton);
+        surpriseButton = findViewById(R.id.spsButton);
+        angerButton = findViewById(R.id.aButton);
+        fearButton = findViewById(R.id.fButton);
+
+
+        loveView = findViewById(R.id.lcount);
+        joyView = findViewById(R.id.jcount);
+        surpriseView = findViewById(R.id.spscount);
+        angerView = findViewById(R.id.acount);
+        sadnessView = findViewById(R.id.scount);
+        fearView = findViewById(R.id.fcount);
 
 
         loveButton.setOnClickListener(this);
@@ -62,6 +98,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sadnessButton.setOnClickListener(this);
         fearButton.setOnClickListener(this);
 
+
+
         emotionAdaptor = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, emotionList);
         instantDisplay.setAdapter(emotionAdaptor);
         instantDisplay.setBackgroundColor(Color.CYAN);
@@ -69,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         instantDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int spot, long l) {
+                index = spot;
                 Intent editStuff = new Intent(getApplicationContext(), Edit.class);
                 editStuff.putExtra("emotionType", spot);
                 startActivity(editStuff);
@@ -86,19 +125,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     // This TextViews are for displaying emotion counts
-//    TextView loveView = findViewById(R.id.lcount);
-//    TextView joyView = findViewById(R.id.jcount);
-//    TextView surpriseView = findViewById(R.id.spscount);
-//    TextView angerView = findViewById(R.id.acount);
-//    TextView sadnessView = findViewById(R.id.scount);
-//    TextView fearView = findViewById(R.id.fcount);
-//
-    Integer count_sad = 0;
-    Integer count_joy = 0;
-    Integer count_fear = 0;
-    Integer count_anger = 0;
-    Integer count_surprise = 0;
-    Integer count_love = 0;
+
+
+
     // Check which button was clicked
     @Override
     public void onClick(View view) {
@@ -113,51 +142,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.lButton:
                 Emotion_Love love = new Emotion_Love(new Date());
                 love.saveComment(comment.getText().toString());
-                emotionList.add(love);
+                //Stack the emotion
+                emotionList.add(0,love);
                 emotionAdaptor.notifyDataSetChanged();
-                //loveView.setText(count_love+=1);
+                loveView.setText((count_love+=1).toString());
                 save();
                 break;
             case R.id.jButton:
                 Emotion_Joy joy = new Emotion_Joy(new Date());
                 joy.saveComment(comment.getText().toString());
-                emotionList.add(joy);
+                emotionList.add(0,joy);
                 emotionAdaptor.notifyDataSetChanged();
-                //joyView.setText();
-                //save();
+                joyView.setText((count_joy+=1).toString());
+                save();
                 break;
             case R.id.spsButton:
                 Emotion_Surprise surprise = new Emotion_Surprise(new Date());
                 surprise.saveComment(comment.getText().toString());
-                emotionList.add(surprise);
+                emotionList.add(0,surprise);
                 emotionAdaptor.notifyDataSetChanged();
-                //surpriseView.setText();
-                //save();
+                surpriseView.setText((count_surprise+=1).toString());
+                save();
                 break;
             case R.id.aButton:
                 Emotion_Anger anger = new Emotion_Anger(new Date());
                 anger.saveComment(comment.getText().toString());
-                emotionList.add(anger);
+                emotionList.add(0,anger);
                 emotionAdaptor.notifyDataSetChanged();
-                //angerView.setText();
-                //save();
+                angerView.setText((count_anger+=1).toString());
+                save();
                 break;
             case R.id.sadButton:
                 Emotion_Sadness sadness = new Emotion_Sadness(new Date());
                 sadness.saveComment(comment.getText().toString());
-                emotionList.add(sadness);
+                emotionList.add(0,sadness);
                 emotionAdaptor.notifyDataSetChanged();
-                //sadnessView.setText());
-                //save();
+                sadnessView.setText((count_sad+=1).toString());
+                save();
                 break;
             case R.id.fButton:
                 Emotion_Fear fear = new Emotion_Fear(new Date());
                 fear.saveComment(comment.getText().toString());
-                emotionList.add(fear);
+                emotionList.add(0,fear);
                 emotionAdaptor.notifyDataSetChanged();
-                //fearView.setText();
-                //save();
-                //save(comment.getText().toString(), fear.getDate());
+                fearView.setText((count_fear+=1).toString());
+                save();
                 break;
         }
     }
@@ -165,24 +194,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void save() {
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(emotionList);
-        editor.putString("Emotion List", json);
-        editor.apply();
+//        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        JsonObject gson = new JsonObject();
+//        String json = gson.toJson(emotionList);
+//        editor.putString("Emotion List", json);
+//        editor.apply();
     }
-
-    private void load() {
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("Emotion List", null);
-        Type type = new TypeToken<ArrayList<Emotion_Joy>>() {}.getType();
-        emotionList = gson.fromJson(json, type);
-        if (emotionList == null) {
-            emotionList = new ArrayList<>();
-        }
-    }
+//
+//    private void load() {
+//        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+//        Gson gson = new Gson();
+//        String json = sharedPreferences.getString("Emotion List", null);
+//        Type type = new TypeToken<ArrayList<Emotion_Joy>>() {}.getType();
+//        emotionList = gson.fromJson(json, type);
+//        if (emotionList == null) {
+//            emotionList = new ArrayList<>();
+//        }
+//    }
 
 
 }

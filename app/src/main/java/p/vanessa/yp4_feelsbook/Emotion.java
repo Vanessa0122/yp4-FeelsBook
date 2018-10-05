@@ -4,7 +4,7 @@ import java.util.Date;
 
 public abstract class Emotion {
 
-    private transient String emotionType = "None";
+    private String emotionType;
     private String comment;
     private Date date;
 

@@ -6,10 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,6 +59,7 @@ public class Edit extends AppCompatActivity {
                     Emotion emotionList = MainActivity.emotionList.get(emotionType);
                     emotionList.saveComment(comment);
 
+
                 }
             }
         });
@@ -64,10 +68,9 @@ public class Edit extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (emotionType != -1) {
-                    MainActivity.emotionList.remove(emotionType);
+                MainActivity.emotionList.remove(MainActivity.index);
+                MainActivity.emotionAdaptor.notifyDataSetChanged();
 
-                }
             }
         });
     }
